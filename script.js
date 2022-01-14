@@ -59,6 +59,7 @@ spanTimer.innerHTML = timer+ 's';
 let interval = setInterval(function () {
     timer -= 1;
     spanTimer.innerHTML= timer +'s'
+    changePos()
     if (timer === 0){
        clearInterval(interval)
        btn.style.display="none"
