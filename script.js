@@ -9,6 +9,13 @@ let bonus = 0;
 spanTimer = document.getElementById("spanTimer");
 btn.style.transitionDuration = vitesse;
 
+
+
+
+//localStorage.clear()
+
+
+
 btn.addEventListener("mouseover", () => {
   changePos();
 });
@@ -29,7 +36,6 @@ btn.addEventListener("click", () => {
   random_bg_color();
   changePos();
   btn.style.transitionDuration = vitesse + "ms";
-  
 });
 
 //************BONNE SERIE******************/
@@ -104,7 +110,7 @@ function verifTime() {
       serieBar.style.background =
         "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)";
       serieTexte.style.display = "none";
-      serieTexte.classList.remove('shuffle')
+      serieTexte.classList.remove("shuffle");
       nbClickSerie = 0;
     }
   }
@@ -121,7 +127,7 @@ function verifTime() {
     serieBar.style.background =
       "linear-gradient(90deg, #FF9A8B 0%, #f2103c 55%, #fd284c 100%)";
     multip.innerHTML = "3";
-    serieTexte.classList.add('shuffle')
+    serieTexte.classList.add("shuffle");
   }
 }
 
@@ -164,7 +170,7 @@ let gameTimer = setInterval(function () {
   changePos();
   if (timer === 0) {
     clearInterval(gameTimer);
-    clearInterval(bonusPicker)
+    clearInterval(bonusPicker);
     btn.style.display = "none";
     endScreen.style.display = "flex";
     setScoreFin();
@@ -382,12 +388,38 @@ let againBtn = document.getElementById("againBtn");
 
 function setScoreFin() {
   scoreFin.innerHTML = nbClick + bonus;
+  let finalScore = nbClick + bonus;
   clearInterval(intervSerie);
+  addScore(finalScore);
+  checkBestScore(finalScore);
+}
+//**********PUSH des scores en localStorage************* */
+let previousRecord;
+let spanOldRecord = document.getElementById('previousRecord')
+let recordDiv = document.getElementById('record')
+function addScore(param) {
+ 
+  if (localStorage.getItem("scores") == null) {
+    localStorage.setItem("scores", "[]");
+  }
+  let oldScores = JSON.parse(localStorage.getItem("scores"));
+  previousRecord = ((Math.max(...oldScores)))
+  if(previousRecord == -Infinity){
+    previousRecord = 0;
+  }
+  oldScores.push(param);
+  localStorage.setItem("scores", JSON.stringify(oldScores));
 }
 
+function checkBestScore(param){
+  scores = JSON.parse(localStorage.getItem("scores"));
+  if((Math.max(...scores)) == param){
+    spanOldRecord.innerHTML=previousRecord
+    recordDiv.style.display="block"
+    console.log('nouveau record!!!')
+  }
+}
+//****************RELOAD */
 againBtn.addEventListener("click", () => {
   location.reload();
 });
-
-
-//*********CLICK EFFECT******* */

@@ -1,0 +1,42 @@
+ul {
+  border: 4px solid white;
+  background-color: #465187;
+  border-radius: 16px;
+  margin:5em ;
+}
+
+li {
+  color: white;
+  border-bottom: 1px solid white;
+  padding: 5px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  position: relative;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listTitle {
+  border-bottom: 2px solid white;
+  background: rgba(0, 0, 0, 0.644);
+  padding: 15px;
+}
+
+.appContainer {
+  background: #172f45;
+}
+
+
+.medal1, .medal2, .medal3{
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    transform: translate(-0%, -50%);
+}
+
+

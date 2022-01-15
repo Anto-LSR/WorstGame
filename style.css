@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-h1 {
+h1, h2 {
   color: white;
 }
 
@@ -327,4 +327,31 @@ h1 {
   }
 }
 
+#record{
+  display: none;
+}
 
+#closeGame button, #rebootGame button{
+  background: black;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 3px;
+  
+}
+
+#closeGame{
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  
+}
+
+#rebootGame{
+  position: absolute;
+  top: 8%;
+  right: 1%;
+}
