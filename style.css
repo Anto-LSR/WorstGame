@@ -8,30 +8,89 @@
 
 h1 {
   color: white;
-  
+}
+
+.appContainer {
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1d1717;
+  position: relative;
 }
 
 #app {
-  width: 100vw;
-  height: 95vh;
+  width: 30vw;
+  height: 80vh;
   background-color: #813333;
   font-family: "Montserrat", sans-serif;
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
+  border: 4px solid white;
+  transition: all 300ms ease;
+  user-select: none;
 }
 
-.score{
-    background-color: black;
-    border-bottom: 4px solid white;
-    box-shadow: 0px 12px 20px 0px black;
-    padding: 1em;
-    display: flex;
-    justify-content: space-between;
+.score {
+  background-color: black;
+  border-bottom: 4px solid white;
+  box-shadow: 0px 12px 20px 0px black;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+#serieBar {
+  width: 30vw;
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  border: 4px solid white;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+#serieBar img {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  clip-path: polygon(15% 0, 100% 0, 100% 17%, 0 17%);
+  width: 300%;
+}
+
+.fillBarAnim {
+  animation: fillBar 6000ms forwards 1;
+}
+
+@keyframes fillBar {
+  0% {
+    left: 60%;
+  }
+
+  100% {
+    left: -60%;
+  }
+}
+
+#serieText {
+  display: none;
+  position: absolute;
+  top: 30%;
+  left: 6%;
+
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+
+  border: 4px solid white;
+  border-radius: 16px;
+  padding: 10px;
 }
 
 .mainBtn {
-  height: 6em;
-  width: 6em;
+  height: 10em;
+  width: 10em;
   border-radius: 50%;
   color: black;
   font-size: 22px;
@@ -47,45 +106,225 @@ h1 {
   box-shadow: 5px 11px 11px black;
 }
 
-.mainBtn:hover{
-    background-color: #7db97d;
-    color: white;
+#modalContainer {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.651);
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.76);
+  padding: 15px;
+  border: 4px solid white;
+  border-radius: 16px;
+  text-align: center;
+}
+
+#againBtn {
+  border: 4px solid white;
+  border-radius: 10px;
+  font-size: 22px;
+  margin-top: 1em;
+  font-weight: bold;
+  padding: 5px;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+#againBtn:hover {
+  background-color: tomato;
+  color: white;
+}
+
+.bonus {
+  width: 3em;
+  height: auto;
+  font-size: 30px;
+  text-align: right;
+  padding: 5px;
+  border-radius: 16px;
+  position: absolute;
+  border: 2px solid white;
+  top: -10%;
+  left: -7%;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  cursor: pointer;
+}
+
+.bonus-right {
+  width: 3em;
+  height: auto;
+  font-size: 30px;
+  text-align: left;
+  padding: 5px;
+  border-radius: 16px;
+  position: absolute;
+  border: 2px solid white;
+  top: -10%;
+  right: -7%;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  cursor: pointer;
+}
+
+.bonus:hover,
+.bonus-right:hover {
+  background: rgb(99, 247, 99);
+}
+
+.timeBonusAnim {
+  animation: timeAnim 3000ms forwards 1;
+}
+
+@keyframes timeAnim {
+  0% {
+    top: -10%;
+  }
+
+  100% {
+    top: 120%;
+  }
+}
+
+.pointBonusAnim {
+  animation: pointAnim 3000ms forwards 1;
+}
+
+@keyframes pointAnim {
+  0% {
+    top: 120%;
+  }
+
+  100% {
+    top: -10%;
+  }
+}
+
+.speedBonusAnim {
+  animation: speedAnim 3000ms forwards 1;
+}
+
+@keyframes speedAnim {
+  0% {
+    top: -10%;
+  }
+
+  100% {
+    top: 120%;
+  }
+}
+
+.rndBonusAnim {
+  animation: rndAnim 3000ms forwards 1;
+}
+
+@keyframes rndAnim {
+  0% {
+    top: 120%;
+  }
+  100% {
+    top: -10%;
+  }
+}
+
+#bonusBtn {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 3px 6px 11px black;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: all 100ms ease;
+  background-color: #08aeea;
+  background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+
+  font-size: 22px;
+}
+
+#timeMessage,
+#speedMessage,
+#pointMessage,
+#rndMessage {
+  position: absolute;
+  display: none;
+}
+
+#timeMessage {
+  top: 0;
+  right: 3%;
+}
+
+#pointMessage {
+  top: 0;
+  left: 3%;
+}
+
+#speedMessage {
+  top: 0%;
+  right: 50%;
+  transform: translate(50%, 18%);
+}
+
+#rndMessage {
+  top: 0%;
+  right: 50%;
+  transform: translate(50%, 18%);
+}
+
+.setOpacity {
+  animation: opacityAnim 3000ms forwards 1;
+}
+
+@keyframes opacityAnim {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+.shuffle {
+  animation: vibrate-1 0.3s linear infinite both;
+}
+
+@-webkit-keyframes vibrate-1 {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
 }
 
 
-#modalContainer{
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.651);
-    z-index: 3;
-    position: fixed;
-    top : 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-#modal{
-    background-color: rgba(0, 0, 0, 0.76);
-    padding: 15px;
-    border: 4px solid white;
-    border-radius: 16px;
-    text-align: center;
-}
-
-#againBtn{
-    border: 4px solid white;
-    border-radius: 10px;
-    font-size: 22px;
-    margin-top: 1em;
-    font-weight: bold;
-    padding: 5px;
-    transition: all 300ms ease;
-    cursor: pointer;
-}
-
-#againBtn:hover{
-    background-color: tomato;
-    color: white;
-}
